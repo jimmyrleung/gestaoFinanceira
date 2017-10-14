@@ -1,5 +1,5 @@
 let PlanoFinanceiro = require("../models/planoFinanceiro");
-
+let handleError = require("../helpers/handleError");
 module.exports = function (express) {
 
     let planoFinanceiroServices = express.services.planoFinanceiro;
@@ -7,14 +7,7 @@ module.exports = function (express) {
     this.create = function (req, res) {
         planoFinanceiroServices.create(req.body.nome)
             .then(() => res.status(200).json())
-            .catch()
-        if (validationErrors.length > 0) {
-            res.status(401).json({ errors: validationErrors });
-        }
-        else {
-            console.log(planoFinanceiro);
-            res.json();
-        }
+            .catch((error) => handleError(error, res));
     }
 
     return this;

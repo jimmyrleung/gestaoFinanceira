@@ -1,6 +1,6 @@
 'use strict';
 let Sequelize = require("sequelize"),
-    dbConfig = require('../..config/config').DATABASE_CONFIG;
+    dbConfig = require('../../config/config').DATABASE_CONFIG;
 
 // Cria um objeto do Sequelize com as configurações do nosso banco
 let sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.passwd,

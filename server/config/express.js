@@ -7,8 +7,7 @@ express.use(helmet());
 express.use(bodyParser.json());
 
 consign({ cwd: 'server' })
-    .include('daos')
-    .then('services')
+    .include('services')
     .then('controllers')
     .then('routes')
     .into(express);

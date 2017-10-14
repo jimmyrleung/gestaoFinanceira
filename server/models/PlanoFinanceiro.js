@@ -10,18 +10,18 @@ module.exports = class PlanoFinanceiro {
     }
 
     validarNome(nomePlanoFinanceiro) {
-        let error = [];
+        let errors = [];
 
         if (!nomePlanoFinanceiro) {
-            return error["É obrigatório definir um nome para o plano financeiro."];
+            errors.push({ field: "nomePlanoFinanceiro", message: "É obrigatório definir um nome para o plano financeiro." });
         }
         else if (typeof nomePlanoFinanceiro !== "string") {
-            return error["O nome do plano financeiro deve ser um texto válido."];
+            errors.push({ field: "nomePlanoFinanceiro", message: "O nome do plano financeiro deve ser um texto válido." });
         }
         else if (nomePlanoFinanceiro.length > 30) {
-            return error["O nome do plano financeiro deve ter no máximo 30 caractéres."];
+            errors.push({ field: "nomePlanoFinanceiro", message: "O nome do plano financeiro deve ter no máximo 30 caractéres." });
         }
 
-        return error;
+        return errors;
     }
 }

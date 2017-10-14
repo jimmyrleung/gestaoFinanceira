@@ -1,26 +1,25 @@
 let PlanoFinanceiro = require("../models/planoFinanceiro");
+let Error = require("../helpers/customError");
+let errorMessages = require("../helpers/constants").errorMsgs;
+let planoFinanceiroSequelizeModel = require("../sequelize/models/planoFinanceiro")();
+let PlanoFinanceiroDAO = require("../daos/planoFinanceiro");
 
 module.exports = function (express) {
-    let planoFinanceiroDAO = express.daos.planoFinanceiro;
+    let planoFinanceiroDAO = new PlanoFinanceiroDAO(planoFinanceiroSequelizeModel);
 
-    this.createService = function (nomePlanoFinanceiro) {
-        return new Promise((resolve, reject) => {
-
-        })
-
+    this.create = function (nomePlanoFinanceiro) {
         // Cria um novo plano financeiro
         let planoFinanceiro = new PlanoFinanceiro(nomePlanoFinanceiro);
 
         // Valida informações
-        validationErrors = planoFinanceiro.validar();
+        let validationErrors = planoFinanceiro.validar();
 
-        // Se houver erros, retorna 401. Caso contrário, chama o serviço de criação.
+        // Se houver erros, retorna 400 (BadRequest). Caso contrário, chama o serviço de criação.
         if (validationErrors.length > 0) {
-            return Promise.reject(validationErrors);
+            return Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors));
         }
         else {
-            console.log(planoFinanceiro);
-            resolve();
+            return planoFinanceiroDAO.create(planoFinanceiro);
         }
     }
 
