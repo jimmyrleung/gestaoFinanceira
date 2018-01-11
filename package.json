@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "set NODE_ENV=development&& npm run -s migrations & node main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test":"mocha --recursive \"test/mocha-tests\"",
     "migrations": "sequelize db:migrate --config server/sequelize/config/config.json --models-path server/sequelize/models --migrations-path server/sequelize/migrations"
   },
   "keywords": [
@@ -23,5 +23,9 @@
     "mysql": "^2.14.1",
     "sequelize": "^3.30.4",
     "sequelize-cli": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
   }
 }

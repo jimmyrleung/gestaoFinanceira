@@ -2,7 +2,7 @@
  * Mensagens internas do sistema
  */
 module.exports.sysMsgs = {
-    MSG_SERVER_STARTED: "Servidor rodando na porta 3000..."
+    MSG_SERVER_STARTED: "Servidor rodando na porta 3001..."
 };
 
 /**

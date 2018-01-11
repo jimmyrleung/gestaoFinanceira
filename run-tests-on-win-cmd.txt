@@ -1,0 +1,2 @@
+ "test\mocha-tests"
+se os arquivos estiverem dentro da pasta "test": ".\node_modules\.bin\mocha"
