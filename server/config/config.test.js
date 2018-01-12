@@ -11,4 +11,4 @@ config.DATABASE_CONFIG = {
     }
 };
 
-return config;
+module.exports = config;

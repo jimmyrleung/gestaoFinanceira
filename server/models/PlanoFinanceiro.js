@@ -1,6 +1,6 @@
 module.exports = class PlanoFinanceiro {
-    constructor(nome) {
-        this.id = null;
+    constructor(id, nome) {
+        this.id = id || null;
         this.nome = nome;
     }
 

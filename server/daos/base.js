@@ -20,7 +20,11 @@ module.exports = class BaseDAO {
     };
 
     deleteQuery(queryObject) {
-        return this.this.SequelizeModel.destroy(queryObject);
+        return this.SequelizeModel.destroy(queryObject);
+    };
+
+    deleteAll() {
+        return this.SequelizeModel.destroy({ where: {}, truncate: true });
     };
 
     findOneById(id) {
@@ -33,5 +37,9 @@ module.exports = class BaseDAO {
 
     findManyQuery(queryObject) {
         return this.SequelizeModel.findAll(queryObject);
+    };
+
+    findAll() {
+        return this.SequelizeModel.findAll();
     };
 }

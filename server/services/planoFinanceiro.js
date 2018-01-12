@@ -8,10 +8,7 @@ module.exports = function (express) {
     let planoFinanceiroDAO = new PlanoFinanceiroDAO(planoFinanceiroSequelizeModel);
 
     return {
-        create: function (nomePlanoFinanceiro) {
-            // Cria um novo plano financeiro
-            let planoFinanceiro = new PlanoFinanceiro(nomePlanoFinanceiro);
-
+        create: function (planoFinanceiro) {
             // Valida informações
             let validationErrors = planoFinanceiro.validar();
 
@@ -22,6 +19,27 @@ module.exports = function (express) {
             else {
                 return planoFinanceiroDAO.create(planoFinanceiro);
             }
-        }
+        },
+
+        update: function (planoFinanceiro) {
+            // Valida informações
+            let validationErrors = planoFinanceiro.validar();
+
+            // Se houver erros, retorna 400 (BadRequest). Caso contrário, chama o serviço de criação.
+            if (validationErrors.length > 0) {
+                return Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors));
+            }
+            else {
+                return planoFinanceiroDAO.updateById(planoFinanceiro.id, planoFinanceiro, ['nome']);
+            }
+        },
+
+        getById: function (idPlanoFinanceiro) {
+            return planoFinanceiroDAO.findOneById(idPlanoFinanceiro);
+        },
+
+        deleteById: function (idPlanoFinanceiro) {
+            return planoFinanceiroDAO.deleteById(idPlanoFinanceiro);
+        },
     }
 }
