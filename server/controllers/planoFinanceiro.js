@@ -4,11 +4,11 @@ module.exports = function (express) {
 
     let planoFinanceiroServices = express.services.planoFinanceiro;
 
-    this.create = function (req, res) {
-        planoFinanceiroServices.create(req.body.nome)
-            .then(() => res.status(200).json())
-            .catch(error => handleError(error, res));
-    }
-
-    return this;
+    return {
+        create: function (req, res) {
+            planoFinanceiroServices.create(req.body.nome)
+                .then(() => res.status(200).json())
+                .catch(error => handleError(error, res));
+        }
+    };
 }

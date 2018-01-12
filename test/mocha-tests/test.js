@@ -1,10 +1,15 @@
-var test = require('../../server/services/test');
+var testService = require('../../server/services/test')();
 var expect = require('chai').expect;
-console.log(test);
 
 describe("#Testing Automated Tests", () => {
-    it("Should return true", () => {
-        var test = test.test();
+    before(function (done) {
+        this.timeout(500);
+        done();
+    });
+
+    it("Should return true", (done) => {
+        var test = testService.test();
         expect(test).to.equal(true);
+        done();
     });
 });

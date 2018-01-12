@@ -1,8 +1,7 @@
 module.exports = function (express) {
-
-    this.test = function () {
-        return true;
+    return {
+        test: function () {
+            return true;
+        }
     };
-
-    return this;
 }
