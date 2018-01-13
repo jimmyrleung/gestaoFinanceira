@@ -7,7 +7,7 @@ let expect = require('chai').expect;
 
 describe("Com relação ao cadastro de plano financeiro", () => {
     before(function (done) {
-        this.timeout(500);
+        this.timeout(3500);
         planoFinanceiroDAO.deleteAll()
             .then(function () {
                 done();

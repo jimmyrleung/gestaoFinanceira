@@ -24,7 +24,7 @@ module.exports = class BaseDAO {
     };
 
     deleteAll() {
-        return this.SequelizeModel.destroy({ where: {}, truncate: true });
+        return this.SequelizeModel.destroy({ where: {} });
     };
 
     findOneById(id) {

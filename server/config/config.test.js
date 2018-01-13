@@ -3,7 +3,7 @@ let config = require("./config.development");
 config.DATABASE_CONFIG = {
     database: "gestaoFinanceiraTest",
     user: "root",
-    passwd: "root",
+    passwd: "root$",
     dbOptions: {
         host: "127.0.0.1",
         dialect: "mysql",
