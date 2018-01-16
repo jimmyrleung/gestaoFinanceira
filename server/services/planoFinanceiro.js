@@ -17,7 +17,11 @@ module.exports = function (express) {
                 return Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors));
             }
             else {
-                return planoFinanceiroDAO.create(planoFinanceiro);
+                return planoFinanceiroDAO.findOneQuery({ where: { nomePlanoFinanceiro: planoFinanceiro.nomePlanoFinanceiro } })
+                    .then(planoFinanceiro => {
+                        return (!planoFinanceiro) ?
+                            planoFinanceiroDAO.create(planoFinanceiro) : Promise.reject(new Error(errorMessages.MSG_PLANO_FINANCEIRO_JA_CADASTRADO, 400));
+                    });
             }
         },
 

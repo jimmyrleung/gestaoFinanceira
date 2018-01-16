@@ -10,5 +10,6 @@ module.exports.sysMsgs = {
  */
 module.exports.errorMsgs = {
     MSG_INTERNAL_SERVER_ERROR: "Erro interno no servidor. Tente novamente mais tarde.",
-    MSG_VALIDATION_ERRORS: "Existem campos com formato inválido."
+    MSG_VALIDATION_ERRORS: "Existem campos com formato inválido.",
+    MSG_PLANO_FINANCEIRO_JA_CADASTRADO: "Já existe um plano financeiro com este nome."
 }
