@@ -11,6 +11,12 @@ module.exports = function (express) {
                 .catch(error => handleError(error, res));
         },
 
+        getAll: function (req, res) {
+            planoFinanceiroServices.getAll()
+                .then(planosFinanceiros => res.status(200).json(planosFinanceiros))
+                .catch(error => handleError(error, res));
+        },
+
         update: function (req, res) {
             planoFinanceiroServices.update(new PlanoFinanceiro(req.body.id, req.body.nome))
                 .then(() => res.status(200).json())

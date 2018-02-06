@@ -42,6 +42,10 @@ module.exports = function (express) {
             return planoFinanceiroDAO.findOneById(idPlanoFinanceiro);
         },
 
+        getAll: function () {
+            return planoFinanceiroDAO.findAll();
+        },
+
         deleteById: function (idPlanoFinanceiro) {
             return planoFinanceiroDAO.deleteById(idPlanoFinanceiro);
         },
