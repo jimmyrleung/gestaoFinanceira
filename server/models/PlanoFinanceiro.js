@@ -1,7 +1,8 @@
 module.exports = class PlanoFinanceiro {
-    constructor(id, nome) {
+    constructor(id, nome, isDefault) {
         this.id = id || null;
         this.nome = nome;
+        this.isDefault = defaultValue;
     }
 
     validar() {

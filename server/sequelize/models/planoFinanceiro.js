@@ -5,7 +5,8 @@ var sequelize = require("../config/sequelize"),
 
 var PlanoFinanceiro = sequelize.define('PlanoFinanceiro', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-    nome: { type: Sequelize.STRING(30), allowNull: false }
+    nome: { type: Sequelize.STRING(30), allowNull: false },
+    isDefault: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
 }, modelsConfig.OPTIONS_MODEL_PLANO_FINANCEIRO);
 
 module.exports = function () {
