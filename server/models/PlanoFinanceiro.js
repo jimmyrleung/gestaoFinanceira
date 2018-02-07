@@ -6,9 +6,7 @@ module.exports = class PlanoFinanceiro {
     }
 
     validar() {
-        console.log(this.nome);
         let error = this.validarNome(this.nome);
-        console.log(error);
         return error;
     }
 

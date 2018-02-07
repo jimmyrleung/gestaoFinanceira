@@ -7,9 +7,10 @@ var sequelize = require("../config/sequelize"),
 
 var PlanoReserva = sequelize.define('PlanoReserva', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-     tipoPlanoReservaId: { type: Sequelize.INTEGER, references: { model: 'TipoPlanoReserva', key: 'id' } },
-     planoFinanceiroId: { type: Sequelize.INTEGER, references: { model: 'PlanoFinanceiro', key: 'id' } },
-    valor: { type: Sequelize.DECIMAL(10, 2), allowNull: false }
+    tipoPlanoReservaId: { type: Sequelize.INTEGER, references: { model: 'TipoPlanoReserva', key: 'id' } },
+    planoFinanceiroId: { type: Sequelize.INTEGER, references: { model: 'PlanoFinanceiro', key: 'id' } },
+    valor: { type: Sequelize.DECIMAL(10, 2), allowNull: false },
+    descricao: { type: Sequelize.STRING(50), allowNull: false }
 }, modelsConfig.modelsConfig.OPTIONS_MODEL_PLANO_RESERVA);
 
 PlanoFinanceiro.hasMany(PlanoReserva);

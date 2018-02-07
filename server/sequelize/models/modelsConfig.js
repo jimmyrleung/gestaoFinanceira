@@ -27,6 +27,7 @@ module.exports = {
 
     OPTIONS_MODEL_PLANO_FINANCEIRO: new OptionsSequelizeModel('PlanoFinanceiro', []),
     OPTIONS_MODEL_TIPO_PLANO_RESERVA: new OptionsSequelizeModel('TipoPlanoReserva', []),
-    OPTIONS_MODEL_PLANO_RESERVA: new OptionsSequelizeModel('PlanoReserva', [])
-    
+    OPTIONS_MODEL_PLANO_RESERVA: new OptionsSequelizeModel('PlanoReserva', []),
+    OPTIONS_MODEL_TIPO_TRANSACAO: new OptionsSequelizeModel('TipoTransacao', []),
+    OPTIONS_MODEL_TRANSACAO: new OptionsSequelizeModel('Transacao', [])
 };
