@@ -1,7 +1,7 @@
-let planoFinanceiroService = require('../../server/services/planoFinanceiro')();
-let PlanoFinanceiro = require("../../server/models/PlanoFinanceiro");
+let planoFinanceiroService = require('../../server/app/planofinanceiro/planoFinanceiro.services');
+let PlanoFinanceiro = require("../../server/app/planofinanceiro/PlanoFinanceiro");
 let planoFinanceiroSequelizeModel = require("../../server/sequelize/models/planoFinanceiro")();
-let PlanoFinanceiroDAO = require("../../server/daos/planoFinanceiro");
+let PlanoFinanceiroDAO = require("../../server/app/planofinanceiro/planoFinanceiro.dao");
 let planoFinanceiroDAO = new PlanoFinanceiroDAO(planoFinanceiroSequelizeModel);
 let expect = require('chai').expect;
 

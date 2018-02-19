@@ -1,4 +1,4 @@
-let BaseDAO = require("./base");
+let BaseDAO = require("../base.dao");
 
 module.exports = class PlanoFinanceiroDAO extends BaseDAO {
     constructor(SequelizeModel) {
