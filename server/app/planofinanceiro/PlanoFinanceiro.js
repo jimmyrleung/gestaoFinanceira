@@ -1,3 +1,6 @@
+let validationErrors = require("../../helpers/constants").errorMsgs;
+let numerics = require("../../helpers/constants").numerics;
+
 module.exports = class PlanoFinanceiro {
     constructor(id, nome, isDefault) {
         this.id = id || null;
@@ -14,13 +17,13 @@ module.exports = class PlanoFinanceiro {
         let errors = [];
 
         if (!nome) {
-            errors.push({ field: "nome", message: "É obrigatório definir um nome para o plano financeiro." });
+            errors.push({ field: "nome", message: validationErrors.MSG_PLANO_FINANCEIRO_NOME_NAO_DEFINIDO });
         }
         else if (typeof nome !== "string") {
-            errors.push({ field: "nome", message: "O nome do plano financeiro deve ser um texto válido." });
+            errors.push({ field: "nome", message: validationErrors.MSG_PLANO_FINANCEIRO_NOME_FORMATO_INVALIDO });
         }
-        else if (nome.length > 30) {
-            errors.push({ field: "nome", message: "O nome do plano financeiro deve ter no máximo 30 caractéres." });
+        else if (nome.length > numerics.NOME_PLANO_FINANCEIRO_MAX_LENGTH) {
+            errors.push({ field: "nome", message: validationErrors.MSG_PLANO_FINANCEIRO_NOME_MAX_LENGTH_EXCEDIDO });
         }
 
         return errors;

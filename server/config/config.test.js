@@ -7,7 +7,8 @@ config.DATABASE_CONFIG = {
     dbOptions: {
         host: "127.0.0.1",
         dialect: "mysql",
-        pool: { max: 5, min: 0, idle: 10000 }
+        pool: { max: 5, min: 0, idle: 10000 },
+        logging: false
     }
 };
 
