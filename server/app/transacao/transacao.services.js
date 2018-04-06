@@ -8,57 +8,35 @@ let transacaoDAO = new TransacaoDAO(transacaoSequelizeModel);
 // let mongodboptions = require("../../config/config").MONGODB_OPTIONS;
 
 module.exports = {
-    create: function (planoFinanceiro) {
+    create: function (transacao) {
         // Valida informações
-        let validationErrors = planoFinanceiro.validar();
+        let validationErrors = transacao.validar();
 
         // Se houver erros, retorna 400 (BadRequest). Caso contrário, chama o serviço de criação.
-        if (validationErrors.length > 0) {
-            return Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors));
-        }
-        else {
-            return transacaoDAO.findOneQuery({ where: { nome: planoFinanceiro.nome } })
-                .then(planoFinanceiroCadastrado => {
-                    if (!planoFinanceiroCadastrado) {
-                        return transacaoDAO.create(planoFinanceiro);
-                    }
-                    else {
-                        return Promise.reject(new Error(errorMessages.MSG_PLANO_FINANCEIRO_JA_CADASTRADO, 400));
-                    }
-                });
-        }
+        return (validationErrors.length > 0) ?
+            Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors)) :
+            transacaoDAO.create(transacao);
     },
 
-    update: function (planoFinanceiro) {
+    update: function (transacao) {
         // Valida informações
-        let validationErrors = planoFinanceiro.validar();
+        let validationErrors = transacao.validar();
 
         // Se houver erros, retorna 400 (BadRequest). Caso contrário, chama o serviço de alteração.
-        if (validationErrors.length > 0) {
-            return Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors));
-        }
-        else {
-            return transacaoDAO.findOneQuery({ where: { nome: planoFinanceiro.nome } })
-                .then(planoFinanceiroCadastrado => {
-                    if (!planoFinanceiroCadastrado) {
-                        return transacaoDAO.updateById(planoFinanceiro.id, planoFinanceiro, ['nome']);
-                    }
-                    else {
-                        return Promise.reject(new Error(errorMessages.MSG_PLANO_FINANCEIRO_JA_CADASTRADO, 400));
-                    }
-                });
-        }
+        return (validationErrors.length > 0) ?
+            Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors)) :
+            transacaoDAO.updateById(transacao.id, transacao, ['nome']);
     },
 
-    getById: function (idPlanoFinanceiro) {
-        return transacaoDAO.findOneById(idPlanoFinanceiro);
+    getById: function (idTransacao) {
+        return transacaoDAO.findOneById(idTransacao);
     },
 
     getAll: function () {
         return transacaoDAO.findAll();
     },
 
-    deleteById: function (idPlanoFinanceiro) {
-        return transacaoDAO.deleteById(idPlanoFinanceiro);
-    },
+    deleteById: function (idTransacao) {
+        return transacaoDAO.deleteById(idTransacao);
+    }
 }

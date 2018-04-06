@@ -43,6 +43,19 @@ let errorMsgs = {
 };
 module.exports.errorMsgs = errorMsgs;
 
+/**
+ * errorTypes (Valores, quantidades, length, etc)
+ */
+let errorTypes = {
+    VALIDATION_ERROR: "validationError",
+    EMPTY_VALUE_ERROR: "emptyValueError",
+    WRONG_FORMAT_ERROR: "wrongFormatError",
+    WRONG_TYPE_ERROR: "wrongTypeError",
+    STRING_MAX_LENGTH_ERROR: "stringMaxLengthError",
+    STRING_MIN_LENGTH_ERROR: "stringMinLengthError"
+};
+module.exports.errorTypes = errorTypes;
+
 
 
 
