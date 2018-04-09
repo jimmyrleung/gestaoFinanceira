@@ -19,6 +19,4 @@ Transacao.belongsTo(PlanoFinanceiro, { as: "planoFinanceiro", foreignKey: "plano
 TipoTransacao.hasMany(Transacao);
 Transacao.belongsTo(TipoTransacao, { as: "tipoTransacao", foreignKey: "tipoTransacaoId" });
 
-module.exports = function () {
-    return Transacao;
-};
+module.exports = Transacao;

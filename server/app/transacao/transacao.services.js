@@ -1,7 +1,7 @@
 let Error = require("../../helpers/customError");
 let errorMessages = require("../../helpers/constants").errorMsgs;
 let Transacao = require("./Transacao");
-let transacaoSequelizeModel = require("../../sequelize/models/transacao")();
+let transacaoSequelizeModel = require("../../sequelize/models/transacao");
 let TransacaoDAO = require("./transacao.dao");
 let transacaoDAO = new TransacaoDAO(transacaoSequelizeModel);
 // let mongoComponent = require("../mongoComponent");

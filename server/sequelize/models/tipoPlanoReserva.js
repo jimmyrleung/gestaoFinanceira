@@ -8,6 +8,4 @@ var TipoPlanoReserva = sequelize.define('TipoPlanoReserva', {
     descricao: { type: Sequelize.STRING(50), allowNull: false }
 }, modelsConfig.OPTIONS_MODEL_TIPO_PLANO_RESERVA);
 
-module.exports = function () {
-    return TipoPlanoReserva;
-};
+module.exports = TipoPlanoReserva;

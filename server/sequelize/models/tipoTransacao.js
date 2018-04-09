@@ -8,6 +8,4 @@ var TipoTransacao = sequelize.define('TipoTransacao', {
     descricao: { type: Sequelize.STRING(50), allowNull: false }
 }, modelsConfig.OPTIONS_MODEL_TIPO_TRANSACAO);
 
-module.exports = function () {
-    return TipoTransacao;
-};
+module.exports = TipoTransacao;

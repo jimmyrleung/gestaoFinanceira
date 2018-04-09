@@ -9,6 +9,4 @@ var PlanoFinanceiro = sequelize.define('PlanoFinanceiro', {
     isDefault: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
 }, modelsConfig.OPTIONS_MODEL_PLANO_FINANCEIRO);
 
-module.exports = function () {
-    return PlanoFinanceiro;
-};
+module.exports = PlanoFinanceiro;

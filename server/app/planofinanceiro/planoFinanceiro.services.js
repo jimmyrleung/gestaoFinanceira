@@ -1,7 +1,7 @@
 let Error = require("../../helpers/customError");
 let errorMessages = require("../../helpers/constants").errorMsgs;
 let PlanoFinanceiro = require("./PlanoFinanceiro");
-let planoFinanceiroSequelizeModel = require("../../sequelize/models/planoFinanceiro")();
+let planoFinanceiroSequelizeModel = require("../../sequelize/models/planoFinanceiro");
 let PlanoFinanceiroDAO = require("./planoFinanceiro.dao");
 let planoFinanceiroDAO = new PlanoFinanceiroDAO(planoFinanceiroSequelizeModel);
 // let mongoComponent = require("../mongoComponent");

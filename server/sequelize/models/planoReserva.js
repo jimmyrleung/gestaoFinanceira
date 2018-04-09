@@ -18,6 +18,4 @@ PlanoReserva.belongsTo(PlanoFinanceiro, { as: "planoFinanceiro", foreignKey: "pl
 TipoPlanoReserva.hasMany(PlanoReserva);
 PlanoReserva.belongsTo(TipoPlanoReserva, { as: "tipoPlanoReserva", foreignKey: "tipoPlanoReservaId" });
 
-module.exports = function () {
-    return PlanoReserva;
-};
+module.exports = PlanoReserva;
