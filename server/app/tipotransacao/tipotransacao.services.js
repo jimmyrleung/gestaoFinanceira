@@ -1,42 +1,42 @@
 let Error = require("../../helpers/customError");
 let errorMessages = require("../../helpers/constants").errorMsgs;
-let Transacao = require("./Transacao");
-let transacaoSequelizeModel = require("../../sequelize/models/transacao");
-let TransacaoDAO = require("./transacao.dao");
-let transacaoDAO = new TransacaoDAO(transacaoSequelizeModel);
+let TipoTransacao = require("./TipoTransacao");
+let tipoTransacaoSequelizeModel = require("../../sequelize/models/tipoTransacao");
+let TipoTransacaoDAO = require("./tipotransacao.dao");
+let tipoTransacaoDAO = new TipoTransacaoDAO(tipoTransacaoSequelizeModel);
 // let mongoComponent = require("../mongoComponent");
 // let mongodboptions = require("../../config/config").MONGODB_OPTIONS;
 
 module.exports = {
-    create: function (transacao) {
+    create: function (tipoTransacao) {
         // Valida informações
-        let validationErrors = transacao.validar();
+        let validationErrors = tipoTransacao.validar();
 
         // Se houver erros, retorna 400 (BadRequest). Caso contrário, chama o serviço de criação.
         return (validationErrors.length > 0) ?
             Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors)) :
-            transacaoDAO.create(transacao);
+            tipoTransacaoDAO.create(tipoTransacao);
     },
 
-    update: function (transacao) {
+    update: function (tipoTransacao) {
         // Valida informações
-        let validationErrors = transacao.validar();
+        let validationErrors = tipoTransacao.validar();
 
         // Se houver erros, retorna 400 (BadRequest). Caso contrário, chama o serviço de alteração.
         return (validationErrors.length > 0) ?
             Promise.reject(new Error(errorMessages.MSG_VALIDATION_ERRORS, 400, validationErrors)) :
-            transacaoDAO.updateById(transacao.id, transacao, ['nome']);
+            tipoTransacaoDAO.updateById(tipoTransacao.id, tipoTransacao, ['descricao']);
     },
 
-    getById: function (idTransacao) {
-        return transacaoDAO.findOneById(idTransacao);
+    getById: function (idTipoTransacao) {
+        return tipoTransacaoDAO.findOneById(idTipoTransacao);
     },
 
     getAll: function () {
-        return transacaoDAO.findAll();
+        return tipoTransacaoDAO.findAll();
     },
 
-    deleteById: function (idTransacao) {
-        return transacaoDAO.deleteById(idTransacao);
+    deleteById: function (idTipoTransacao) {
+        return tipoTransacaoDAO.deleteById(idTipoTransacao);
     }
 }

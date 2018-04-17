@@ -11,15 +11,15 @@ module.exports = class PlanoFinanceiro {
     }
 
     validar() {
-        let error = this.validarNome(this.nome);
+        const error = this.validarNome();
         return error;
     }
 
-    validarNome(nome) {
+    validarNome() {
         let errors = [];
         
         const stringValidator = new StringValidator({
-            stringToValidate: nome,
+            stringToValidate: this.nome,
             shouldValidateMaxLength: true,
             maxLength: numerics.NOME_PLANO_FINANCEIRO_MAX_LENGTH,
             shouldValidateMinLength: false,

@@ -27,7 +27,7 @@ module.exports = class StringValidator {
     };
 
     validate() {
-        if (!this.stringToValidate) {
+        if (this.shouldValidateEmptyString && !this.stringToValidate) {
             return (this.verbose) ?
                 { isValid: false, errorType: errorTypes.EMPTY_VALUE_ERROR } : false;
         }

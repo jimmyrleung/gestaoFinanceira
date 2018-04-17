@@ -1,17 +1,18 @@
 /**
  * Numerics (Valores, quantidades, length, etc)
  */
-let numerics = {
+const numerics = {
     SYSTEM_DEFAULT_PORT: 3001,
     NOME_PLANO_FINANCEIRO_MAX_LENGTH: 30,
-    DESCR_TRANSACAO_MAX_LENGTH: 100
+    DESCR_TRANSACAO_MAX_LENGTH: 100,
+    DESCR_TIPO_TRANSACAO_MAX_LENGTH: 50
 };
 module.exports.numerics = numerics;
 
 /**
  * Mensagens internas do sistema
  */
-let sysMsg = {
+const sysMsg = {
     MSG_SERVER_STARTED: `Servidor rodando na porta ${numerics.SYSTEM_DEFAULT_PORT}...`
 };
 module.exports.sysMsgs = sysMsg;
@@ -19,7 +20,7 @@ module.exports.sysMsgs = sysMsg;
 /**
  * Mensagens de erro
  */
-let errorMsgs = {
+const errorMsgs = {
     MSG_INTERNAL_SERVER_ERROR: "Erro interno no servidor. Tente novamente mais tarde.",
     MSG_VALIDATION_ERRORS: "Existem campos com formato inválido.",
 
@@ -39,14 +40,18 @@ let errorMsgs = {
     MSG_TRANSACAO_VALOR_FORMATO_INVALIDO: "O valor da transação deve ser um valor válido e deve estar no formato ############,##.",
     MSG_TRANSACAO_VALOR_ZERO_OU_NEGATIVO: "O valor deve ser positivo e maior que zero.",
     MSG_TRANSACAO_SEM_PLANO_FINANCEIRO: "A transação deve estar vinculada a um plano financeiro.",
-    MSG_TRANSACAO_SEM_TIPO: "A transação deve ter um tipo definido."
+    MSG_TRANSACAO_SEM_TIPO: "A transação deve ter um tipo definido.",
+
+    MSG_TIPO_TRANSACAO_DESCRICAO_NAO_DEFINIDA: "É obrigatório definir uma descrição para o tipo de transação.",
+    MSG_TIPO_TRANSACAO_DESCRICAO_FORMATO_INVALIDO: "O tipo de transação deve ser um texto válido.",
+    MSG_TIPO_TRANSACAO_DESCRICAO_MAX_LENGTH_EXCEDIDO: `O tipo de transação deve ter no máximo ${numerics.DESCR_TIPO_TRANSACAO_MAX_LENGTH} caractéres.`,
 };
 module.exports.errorMsgs = errorMsgs;
 
 /**
- * errorTypes (Valores, quantidades, length, etc)
+ * errorTypes (tipos de erro de validação)
  */
-let errorTypes = {
+const errorTypes = {
     VALIDATION_ERROR: "validationError",
     EMPTY_VALUE_ERROR: "emptyValueError",
     WRONG_FORMAT_ERROR: "wrongFormatError",
@@ -55,9 +60,6 @@ let errorTypes = {
     STRING_MIN_LENGTH_ERROR: "stringMinLengthError"
 };
 module.exports.errorTypes = errorTypes;
-
-
-
 
 
 

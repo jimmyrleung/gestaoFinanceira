@@ -1,5 +1,7 @@
 let validationErrors = require("../../helpers/constants").errorMsgs;
 let numerics = require("../../helpers/constants").numerics;
+let errorTypes = require("../../helpers/constants").errorTypes;
+let StringValidator = require("../../helpers/StringValidator");
 
 module.exports = class Transacao {
     constructor(id, planoFinanceiroId, tipoTransacaoId, dataTransacao, descricao, valor) {
@@ -22,13 +24,26 @@ module.exports = class Transacao {
     validarDescricao() {
         let errors = [];
 
-        if (!this.descricao) {
+        const stringValidator = new StringValidator({
+            stringToValidate: this.descricao,
+            shouldValidateMaxLength: true,
+            maxLength: numerics.DESCR_TRANSACAO_MAX_LENGTH,
+            shouldValidateMinLength: false,
+            verbose: true,
+            shouldValidateEmptyString: true,
+            shouldTestRegex: false,
+        });
+
+        const validation = stringValidator.validate();
+        if (validation.isValid) return errors;
+
+        if (validation.errorType === errorTypes.EMPTY_VALUE_ERROR) {
             errors.push({ field: "descrição", message: validationErrors.MSG_TRANSACAO_DESCRICAO_NAO_DEFINIDA });
         }
-        else if (typeof this.descricao !== "string") {
+        else if (validation.errorType === errorTypes.WRONG_TYPE_ERROR) {
             errors.push({ field: "descrição", message: validationErrors.MSG_TRANSACAO_DESCRICAO_FORMATO_INVALIDO });
         }
-        else if (this.descricao.length > numerics.DESCR_TRANSACAO_MAX_LENGTH) {
+        else if (validation.errorType === errorTypes.STRING_MAX_LENGTH_ERROR) {
             errors.push({ field: "descrição", message: validationErrors.MSG_TRANSACAO_DESCRICAO_MAX_LENGTH_EXCEDIDO });
         }
 

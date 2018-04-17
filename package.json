@@ -4,10 +4,11 @@
   "description": "Prototipo para projeto de controle de financas",
   "main": "main.js",
   "scripts": {
-    "start": "set NODE_ENV=development&& npm run -s migrations & node main.js",
+    "start": "set NODE_ENV=development&& npm run -s migrations & npm run -s seeds & node main.js",
     "test": "set NODE_ENV=test&& npm run -s migrations & mocha --recursive \"test/mocha-tests\"",
     "nyan-test": "set NODE_ENV=test&& npm run -s migrations & mocha --recursive \"test/mocha-tests\" -R nyan",
-    "migrations": "sequelize db:migrate --config server/sequelize/config/config.json --models-path server/sequelize/models --migrations-path server/sequelize/migrations"
+    "migrations": "sequelize db:migrate --config server/sequelize/config/config.json --models-path server/sequelize/models --migrations-path server/sequelize/migrations",
+    "seeds": "sequelize db:seed:all --config server/sequelize/config/config.json --models-path server/sequelize/models --migrations-path server/sequelize/migrations --seeders-path server/sequelize/seeders"
   },
   "keywords": [
     "financas",

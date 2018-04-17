@@ -33,11 +33,29 @@ describe("Com relação ao validador 'String Validator'", () => {
 
     describe("Com relação a validações não-verbosas", () => {
         /* Required */
-        it("#deve retornar 'false' caso seja passado uma string vazia", (done) => {
-            let stringValidator = getStringValidatorDefault();
-            expect(stringValidator.validate()).to.be.equal(false);
-            done();
-        });
+        it("#deve retornar 'false' caso seja passado uma string vazia " +
+            "com a flag de validação de string vazia ativa", (done) => {
+                let stringValidator = getStringValidatorDefault();
+
+                // Desliga as outras validações
+                stringValidator.shouldValidateMinLength = false;
+                stringValidator.shouldValidateMaxLength = false;
+                expect(stringValidator.validate()).to.be.equal(false);
+                done();
+            });
+
+        it("#deve retornar 'true' caso seja passado uma string vazia " +
+            "com a flag de validação de string vazia inativa", (done) => {
+                let stringValidator = getStringValidatorDefault();
+
+                // Desliga as outras validações
+                stringValidator.shouldValidateMinLength = false;
+                stringValidator.shouldValidateMaxLength = false;
+
+                stringValidator.shouldValidateEmptyString = false;
+                expect(stringValidator.validate()).to.be.equal(true);
+                done();
+            });
 
         /* TypeChecking */
         it("#deve retornar 'false' caso seja passado um tipo diferente de string", (done) => {
@@ -168,14 +186,30 @@ describe("Com relação ao validador 'String Validator'", () => {
 
     describe("Com relação a validações verbosas", () => {
         /* Required */
-        it("#deve retornar 'false' e erro de 'empty string' caso seja passado uma string vazia", (done) => {
-            let stringValidator = getStringValidatorDefault({ verbose: true });
-            const validation = stringValidator.validate();
+        it("#deve retornar 'false' e erro de 'empty string' caso seja passado uma string vazia" +
+            "", (done) => {
+                let stringValidator = getStringValidatorDefault({ verbose: true });
+                stringValidator.shouldValidateMaxLength = false;
+                stringValidator.shouldValidateMinLength = false;
+                const validation = stringValidator.validate();
 
-            expect(validation.isValid).to.be.equal(false);
-            expect(validation.errorType).to.be.equal(errorTypes.EMPTY_VALUE_ERROR);
-            done();
-        });
+                expect(validation.isValid).to.be.equal(false);
+                expect(validation.errorType).to.be.equal(errorTypes.EMPTY_VALUE_ERROR);
+                done();
+            });
+
+        it("#deve retornar 'true' sem erro validação caso seja passado uma string vazia" +
+            "", (done) => {
+                let stringValidator = getStringValidatorDefault({ verbose: true });
+                stringValidator.shouldValidateMaxLength = false;
+                stringValidator.shouldValidateMinLength = false;
+                stringValidator.shouldValidateEmptyString = false;
+                const validation = stringValidator.validate();
+
+                expect(validation.isValid).to.be.equal(true);
+                expect(validation.errorType).to.be.equal(undefined);
+                done();
+            });
 
         /* TypeChecking */
         it("#deve retornar 'false' e erro 'wrong type' caso seja passado um tipo diferente de string", (done) => {
