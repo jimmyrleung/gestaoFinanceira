@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "set NODE_ENV=development&& npm run -s migrations & node main.js",
-    "test": "set NODE_ENV=test&& npm run -s migrations & mocha --recursive \"test/mocha-tests\" -R nyan",
+    "test": "set NODE_ENV=test&& npm run -s migrations & mocha --recursive \"test/mocha-tests\"",
+    "nyan-test": "set NODE_ENV=test&& npm run -s migrations & mocha --recursive \"test/mocha-tests\" -R nyan",
     "migrations": "sequelize db:migrate --config server/sequelize/config/config.json --models-path server/sequelize/models --migrations-path server/sequelize/migrations"
   },
   "keywords": [
